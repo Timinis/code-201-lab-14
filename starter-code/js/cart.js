@@ -1,9 +1,6 @@
 /* global Cart */
 'use strict';
 
-// Create an event listener so that when the delete link is clicked, the removeItemFromCart method is invoked.
-var table = document.getElementById('cart');
-table.addEventListener('click', removeItemFromCart);
 var cart;
 
 function loadCart() {
@@ -26,10 +23,10 @@ function showCart() {
 
   // TODO: Find the table body
   let tableEl = document.getElementById('cart');
+  let tableBody = tableEl.getElementsByTagName('tbody')[0];
+  tableBody.innerHTML = '';
   // TODO: Iterate over the items in the cart
-  for (let i = 0; Cart.cartItems.length; i++) {
-    let itemsInCart = CartItems[i][0];
-    let quantityOfItem = CartItems[i][1];
+  for (let i = 0; i < cart.items.length; i++) {
     const trEl = document.createElement('tr');
     const deleteLink = document.createElement('td');
     const displayQuantity = document.createElement('td');
@@ -38,19 +35,41 @@ function showCart() {
     trEl.appendChild(displayQuantity);
     trEl.appendChild(displayItem);
     deleteLink.textContent = 'X';
-    displayQuantity.textContent = quantityOfItem;
-    itemsInCart = itemsInCart;
-    tableEl.appendChild(trEl);
+    displayQuantity.textContent = cart.items[i].quantity;
+    displayItem.textContent = cart.items[i].product.name;
+    var productImage = document.createElement('img');
+    productImage.src = cart.items[i].product.filePath;
+    productImage.height = 50;
+    displayItem.appendChild(productImage);
+    // itemsInCart = itemsInCart;
+    tableBody.appendChild(trEl);
+
+    deleteLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      removeItemFromCart(cart.items[i].product);
+    });
   }
   // TODO: Add the TR to the TBODY and each of the TD's to the TR
 
 }
 
-function removeItemFromCart(event) {
+function removeItemFromCart(product) {
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
+  cart.removeItem(product);
   // TODO: Save the cart back to local storage
+  cart.save();
   // TODO: Re-draw the cart table
+  showCart();
 
+  let deleteMessage = document.createElement('div');
+  deleteMessage.textContent = 'Item Removed';
+  deleteMessage.className = 'confirmationMessage';
+
+  document.getElementsByTagName('section')[1].appendChild(deleteMessage);
+
+  setTimeout(function() {
+    document.removeChild(deleteMessage);
+  }, 2500);
 }
 
 // This will initialize the page and draw the cart on screen
