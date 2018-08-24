@@ -1,1 +1,73 @@
 /* TODO: Make it awesome */
+
+* {
+  font-family: sans-serif;
+}
+
+/* Bus Mall Store */
+
+body h1 {
+  text-align: left;
+  background-color: turquoise;
+  padding: 15px;
+  font-size: 40px;
+  font-family: sans-serif
+}
+
+/*Shop Our Catelogu*/
+
+main h1 {
+  text-align: center;
+  background-color: goldenrod;
+  padding: 15px;
+  font-size: 30px;
+}
+
+/* Home and Cart*/
+
+body li:first {
+  font-family: sans-serif;
+  font-size: 18px;
+  float: right;
+}
+
+body li {
+  font-family: sans-serif;
+  font-size: 18px;
+  text-align: left;
+  margin: 10px;
+}
+
+/* "Select an item...*/
+
+main li {
+  margin: 25px;
+}
+
+/*Catalog*/
+
+legend {
+  font-size: 18px;
+  margin: 20px;
+}
+
+/*Item & Quantity*/
+
+label {
+  margin: 20px;
+  font-size: 20px;
+  float: left;
+}
+
+/*Cart: Remove Quantity Item*/
+
+table th {
+  font-size: 18px;
+  padding-left: 20px;
+  float: left;
+}
+
+footer {
+  font-size: 12px;
+  text-align: center;
+}
